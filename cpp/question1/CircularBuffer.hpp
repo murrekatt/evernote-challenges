@@ -1,3 +1,6 @@
+#ifndef EVERNOTE_CIRCULARBUFFER_HPP
+#define EVERNOTE_CIRCULARBUFFER_HPP
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -76,3 +79,5 @@ private:
 };
 
 } // namespace evernote
+
+#endif // EVERNOTE_CIRCULARBUFFER_HPP
