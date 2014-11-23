@@ -1,13 +1,42 @@
-#include "TestHarness.hpp"
 #include "CircularBuffer.hpp"
+#include "TestHarness.hpp"
+#include <string>
+#include <vector>
 
-using namespace evernote;
+namespace
+{
 
 struct CircularBufferFixture
 {
     CircularBufferFixture() : buffer_(5) {}
-    CircularBuffer<std::string> buffer_;
+    evernote::CircularBuffer<std::string> buffer_;
 };
+
+struct TestVisitor : public std::vector<std::string>
+{
+    void list(const std::string& s)
+    {
+        push_back(s);
+    }
+};
+
+} // namespace
+
+TEST(CircularBuffer, challenge_input_gives_correct_output)
+{
+    evernote::CircularBuffer<std::string> buffer(10);
+    buffer.append("Fee");
+    buffer.append("Fi");
+    buffer.append("Fo");
+    buffer.append("Fum");
+    buffer.remove();
+    buffer.remove();
+    TestVisitor v;
+    buffer.list(v);
+    ASSERT_EQ(2, v.size());
+    ASSERT_STREQ("Fo", v[0]);
+    ASSERT_STREQ("Fum", v[1]);
+}
 
 TEST_F(CircularBufferFixture, append_more_than_max_elements_gives_size_max)
 {

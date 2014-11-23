@@ -3,17 +3,30 @@
 #include <string>
 #include <cstdlib>
 
-using namespace evernote;
+namespace
+{
+
+struct Lister
+{
+    void list(const std::string& s)
+    {
+        std::cout << s << '\n';
+    }
+};
+
+} // namespace
 
 int main()
 {
+    Lister l;
+
     std::string line;
 
     // find out capacity and create buffer
     std::getline(std::cin, line);
     size_t capacity = std::atoi(&line[0]);
 
-    CircularBuffer<std::string> buffer(capacity);
+    evernote::CircularBuffer<std::string> buffer(capacity);
 
     // read commands from stdin
     while (std::getline(std::cin, line)) {
@@ -35,7 +48,7 @@ int main()
                 while (capacity--) buffer.remove();
                 break;
             case 'L': // list buffer content
-                buffer.list();
+                buffer.list(l);
                 break;
             case 'Q': // quit
                 return 0;

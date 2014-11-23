@@ -1,8 +1,6 @@
 #ifndef EVERNOTE_CIRCULARBUFFER_HPP
 #define EVERNOTE_CIRCULARBUFFER_HPP
 
-#include <iostream>
-#include <string>
 #include <vector>
 
 namespace evernote
@@ -39,14 +37,15 @@ public:
         lastWasAppend_ = false;
     }
 
-    void list() const
+    template <typename V>
+    void list(V& v) const
     {
         if (empty())
             return;
 
         int pos = tail_;
         do {
-            std::cout << buffer_[pos] << '\n';
+            v.list(buffer_[pos]);
             pos = (pos + 1) % capacity_;
         } while (pos != head_);
     }
