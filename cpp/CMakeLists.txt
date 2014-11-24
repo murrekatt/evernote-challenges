@@ -32,4 +32,5 @@ endif()
 enable_testing()
 
 add_subdirectory(question1)
+add_subdirectory(question2)
 add_subdirectory(question3)

@@ -13,4 +13,5 @@ Here are solutions in C++ to the three coding challenges.
 ## Running
 
     ./question1/question1 < input
+    ./question1/question2 < input
     ./question1/question3 < input
