@@ -26,12 +26,14 @@ public:
     template <typename V>
     void top(V& v, size_t k) const
     {
+        typedef std::pair<T, int> Term;
+        typedef std::vector<Term> Terms;
         // copy pairs into vector
-        std::vector<std::pair<T, int>> terms;
-        std::copy(terms_.begin(), terms_.end(), std::back_inserter<std::vector<std::pair<T, int>>>(terms));
+        Terms terms;
+        std::copy(terms_.begin(), terms_.end(), std::back_inserter<Terms>(terms));
         // sort decending values
         std::sort(terms.begin(), terms.end(),
-            [=](std::pair<T, int>& a, std::pair<T, int>& b) {
+            [=](Term& a, Term& b) {
                 return a.second > b.second;
             }
         );
