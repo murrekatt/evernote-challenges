@@ -1,0 +1,7 @@
+# Golang solutions
+
+Here are solutions in Golang to the three coding challenges.
+
+## Running
+
+    go run question3.go
