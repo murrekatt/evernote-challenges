@@ -63,5 +63,3 @@ while True:
         sys.exit(0)
     else:
         sys.exit(1)
-
-buffer.list()
